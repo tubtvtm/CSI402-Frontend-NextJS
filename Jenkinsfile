@@ -1,49 +1,46 @@
 pipeline {
     agent any
     
-   stages{
-        stage('clone') {
-            steps{
-                print "Checkout"
-                Checkout({
-                    $class: 'GitSCM',
-                    branches: [[name: '*/main']]
-                    userRemoteConfigs : [ [
-                        credentialsId: 'tubtvtm',
-                        url: 'https://github.com/tubtvtm/CSI402-Frontend-NextJS.git'
-                    ]]
-                })
+    stages {
+        stage('Clone Repository') {
+            steps {
+                script {
+                    echo "Checkout repository..."
+                    checkout([
+                        $class: 'GitSCM',
+                        branches: [[name: '*/main']],
+                        userRemoteConfigs: [[
+                            credentialsId: 'tubtvtm',
+                            url: 'https://github.com/tubtvtm/CSI402-Frontend-NextJS.git'
+                        ]]
+                    ])
+                    echo "Checkout Success"
+                }
             }
-            print "Checkout Success"
+        }
 
-    }
-    } 
-
-    stages{
         stage('Build') {
-            steps{
-                print "Build Docker" 
-
+            steps {
+                script {
+                    echo "Build Docker"
+                }
             }
         }
-    }
 
-    // stages{
-    //     stage('Deploy Image') {
-    //         steps{
-    //             print "Deploy"
-
-    //         }
-    //     }
-    // }
-
-    stages{
         stage('Testing') {
-            steps{
-                print "Test"
-
+            steps {
+                script {
+                    echo "Running Tests"
+                }
             }
         }
+
+        // stage('Deploy') {
+        //     steps {
+        //         script {
+        //             echo "Deploying Image"
+        //         }
+        //     }
+        // }
     }
-    
 }
