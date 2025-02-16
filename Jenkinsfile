@@ -7,7 +7,7 @@ pipeline {
                 print "Checkout"
                 Checkout({
                     $class: 'GitSCM',
-                    branches: [[name: '*/main']] , [[name: '*/develop']]
+                    branches: [[name: '*/main']]
                     userRemoteConfigs : [ [
                         credentialsId: 'tubtvtm',
                         url: 'https://github.com/tubtvtm/CSI402-Frontend-NextJS.git'
