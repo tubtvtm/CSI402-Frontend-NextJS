@@ -9,7 +9,7 @@ pipeline {
                     $class: 'GitSCM',
                     branches: [[name: '*/main']] , [[name: '*/develop']]
                     userRemoteConfigs : [ [
-                        credentialsId: 'tubtvtm@gmail.com',
+                        credentialsId: 'tubtvtm',
                         url: 'https://github.com/tubtvtm/CSI402-Frontend-NextJS.git'
                     ]]
                 })
